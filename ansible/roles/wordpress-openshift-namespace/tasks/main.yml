@@ -37,3 +37,8 @@
 - name: "Management container (ssh server, PHP CLI)"
   include: mgmt.yml
   tags: mgmt
+
+- name: "Monitoring"
+  when: openshift_namespace == "wwp"
+  include: monitoring.yml
+  tags: monitoring
