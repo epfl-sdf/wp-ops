@@ -39,7 +39,7 @@ def probe(url, metrics, inject_get_json=None):
     for m in menu:
         id = m['ID']
         G.add_node(id)
-        parent = m.get('post_parent', 0)
+        parent = int(m.get('menu_item_parent', 0))
         if parent != 0:
             G.add_edge(id, parent)
             if parent not in ids:
