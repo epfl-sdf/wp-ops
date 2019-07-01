@@ -2,7 +2,7 @@ FROM ubuntu:bionic
 
 # Version pins are defined here:
 ENV PHP_VERSION=7.3
-ARG WORDPRESS_VERSION_LINEAGE=4.9
+ARG WORDPRESS_VERSION_LINEAGE=5.0
 
 ENV DEBIAN_FRONTEND=noninteractive
 
