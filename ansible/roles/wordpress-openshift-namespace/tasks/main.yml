@@ -48,9 +48,9 @@
   when: "'openshift-namespaces-blue' in group_names"
   include_tasks:
     file: blue-deployment.yml
-  loop: "{{MyList}}"
-  loop_control:
-    loop_var: dc
+#  loop: "{{MyList}}"
+#  loop_control:
+#    loop_var: dc
   tags:
     - blue
     - dc
