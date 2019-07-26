@@ -1,45 +1,38 @@
 ---
 
 
-- name: "dc/{{ dc.name }}"
+- name: "dc/{{ name }}"
   openshift:
     state: latest
     kind: DeploymentConfig
     apiVersion: apps.openshift.io/v1
     metadata:
       labels:
-        run: "{{dc.name}}"
-      name: "{{dc.name}}"
+        run: "{{name}}"
+      name: "{{name}}"
       namespace: "{{ openshift_namespace }}"
     spec:
       replicas: 1
 #      selector:
 #        run: "{{dc.name}}"
       template:
-        when: dc.db_ip is undefined
+#        when: db_ip is undefined
         metadata:
           labels:
-            run: "{{dc.name}}"
+            run: "{{name}}"
         spec:
           containers:
-            - env:
-                - name: WORDPRESS_DB_NAME
-                  value: "{{dc.db_name}}"
-                - name: WORDPRESS_DB_USER
-                  value: root
-                - name: WORDPRESS_DB_PASSWORD
-                  value: "{{dc.db_root_password | eyaml(eyaml_keys) }}"
-                - name: WORDPRESS_DB_HOST
-                  value: "{{dc.db_ip}}"
-              image: 'wordpress:latest'
-              name: "{{dc.name}}"
+            - image: 'wordpress:latest'
+              name: "{{name}}"
+              command:
+                - /usr/local/bin/apache2-foreground
               volumeMounts:
                 - mountPath: /var/www/html
-                  name: "nfsvol-{{dc.name}}"
+                  name: "nfsvol-{{name}}"
           volumes:
-            - name: "nfsvol-{{dc.name}}"
+            - name: "nfsvol-{{name}}"
               persistentVolumeClaim:
-                claimName: 'nfs-pvc-{{dc.name}}'
+                claimName: 'nfs-pvc-{{name}}'
       triggers:
         - type: ConfigChange
              
