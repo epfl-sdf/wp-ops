@@ -42,8 +42,6 @@
   import_tasks: mgmt.yml
   tags: mgmt
 
-
-
 - name: blue-deployment
   when: "'openshift-namespaces-blue' in group_names"
   include_tasks:
