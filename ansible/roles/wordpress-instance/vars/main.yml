@@ -43,3 +43,6 @@ wp_plugin_list: "{{ ansible_facts.ansible_local.wp_plugin_list }}"
 # Range of IPv4 addresses that we could be making RPCs from (in
 # particular, to Tequila)
 wp_ops_rpcclient_ipv4_range: 10.180.21.0/24
+
+
+is_minishift_instance: "{{'wordpress_instances_test_blue' in group_names}}"
