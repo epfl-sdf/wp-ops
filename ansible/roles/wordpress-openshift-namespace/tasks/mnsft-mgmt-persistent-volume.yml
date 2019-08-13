@@ -20,6 +20,6 @@
       persistentVolumeReclaimPolicy: Retain
       nfs:
         path: "/wp"
-        server: 128.179.150.176
+        server: "{{IPADRS}}"
         readOnly: false
   tags: pv
