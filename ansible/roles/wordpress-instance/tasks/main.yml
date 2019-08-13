@@ -5,22 +5,16 @@
 # Variables:: (in addition to those defined or documented in
 #              ../vars/*.yml)
 
+
 - include_vars: wp-destructive.yml   # For wp_can
   tags: always
-
-- meta: end_play
-
-
-
-
-- name: Create directories for wordpress instances
-  import_tasks: "create.yml"
 
 
 - name: WordPress facts
   import_tasks: facts.yml
   when: not is_minishift_instance
   tags: facts
+
 
 - name: Backup
   import_tasks: "backup.yml"
@@ -30,6 +24,7 @@
              # passed on the command line
     - wipe
     - backup
+
 
 - name: Wipe
   import_tasks: "wipe.yml"

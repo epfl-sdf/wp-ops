@@ -1,18 +1,6 @@
 ---
 # tasks for WordPress OpenShift namespaces
 
-#empty safety test before launching ...
-- name: "is_minishift"
-  when: is_minishift
-  shell:
-    cmd: |
-       set -e -x
-- name: "not is_minishift"
-  when: not is_minishift
-  shell:
-    cmd: |
-       set -e -x
-
 
 - name: "Disk usage report microservice"
   when: not is_minishift
@@ -64,10 +52,4 @@
 - name: blue-deployment
   when: is_minishift
   include_tasks:
-    file: blue-mgmt-deployment.yml
-#  loop: "{{MyList}}"
-#  loop_control:
-#    loop_var: dc
-#  tags:
-#    - blue
-#    - dc
+    file: mnsft-mgmt-deployment.yml
