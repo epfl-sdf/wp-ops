@@ -1,0 +1,5 @@
+---
+# vars file for wordpress-deployment
+
+
+is_minishift_instance: "{{'wordpress_instances_test_blue' in group_names}}"

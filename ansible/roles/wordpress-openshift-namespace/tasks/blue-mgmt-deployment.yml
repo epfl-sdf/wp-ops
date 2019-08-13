@@ -1,6 +1,12 @@
 ---
 # Infrastructure deployment tasks
 #
+- name: Create wp directory
+  connection: local
+  shell: |
+    set -e -x
+    docker exec "{{nas_name}}" /bin/bash -c 'mkdir -p /"{{nfs_path}}"/wp ; chown -R "{{web_uid}}"."{{web_gid}}" /"{{nfs_path}}"/wp'
+
 - name: pv
   import_tasks: "mnsft-mgmt-persistent-volume.yml"
   tags:

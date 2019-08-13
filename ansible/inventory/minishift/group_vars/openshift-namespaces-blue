@@ -27,6 +27,10 @@ MyList:
 #      db_ip: 128.179.146.8
 #      nfs_ip: 128.179.146.8
 
+web_uid: 1000
+web_gid: 1000
+nfs_path: "nfsshare"
+nas_name: "nas"
 eyaml_keys:
   priv: "/keybase/team/epfl_wwp_blue/private_key.pkcs7.pem"
   pub: "/keybase/team/epfl_wwp_blue/public_key.pkcs7.pem"

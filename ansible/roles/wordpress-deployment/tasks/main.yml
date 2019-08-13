@@ -1,0 +1,9 @@
+---
+# tasks file for wordpress-deployment
+
+- name: Create directories in nfs server
+  import_tasks: create.yml
+
+- name: "module test"
+  import_tasks: blue-deployment.yml
+

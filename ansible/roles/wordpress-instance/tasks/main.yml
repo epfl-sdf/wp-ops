@@ -8,16 +8,14 @@
 - include_vars: wp-destructive.yml   # For wp_can
   tags: always
 
+- meta: end_play
+
+
 
 
 - name: Create directories for wordpress instances
   import_tasks: "create.yml"
-  when: is_minishift_instance
-  tags: blue
 
-- name: module test
-  include_tasks: "blue-deployment.yml"
-  when: is_minishift_instance
 
 - name: WordPress facts
   import_tasks: facts.yml

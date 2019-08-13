@@ -1,7 +1,5 @@
----
-
-
-- name: "dc/{{ name }}"
+- name: DeploymentConfigs
+  connection: local
   openshift:
     state: latest
     kind: DeploymentConfig
@@ -10,7 +8,7 @@
       labels:
         run: "{{name}}"
       name: "{{name}}"
-      namespace: "{{ minishift_namespace }}"
+      namespace: "myproject"
     spec:
       replicas: 1
       template:
@@ -19,13 +17,14 @@
             run: "{{name}}"
         spec:
           containers:
-            - image: 'wordpress:latest'
+            - env:
+              - name: WP_ENV
+                value: env
               name: "{{name}}"
-              command:
-                - /usr/local/bin/apache2-foreground
               volumeMounts:
-                - mountPath: /var/www/html
+                - mountPath: /srv
                   name: "nfsvol-{{name}}"
+                  
           volumes:
             - name: "nfsvol-{{name}}"
               persistentVolumeClaim:
@@ -39,7 +38,7 @@
             - "{{ name }}"
             from:
               kind: ImageStreamTag
-              name: "{{ httpd_image_name }}:prod"
-              namespace: "{{ minishift_namespace }}"
+              name: "httpd:prod"
+              namespace: "myproject"
              
   tags: dc
