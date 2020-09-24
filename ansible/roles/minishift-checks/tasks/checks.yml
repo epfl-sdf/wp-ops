@@ -4,8 +4,8 @@
   shell:
         cmd: |
           set -e -x
-          oc adm policy add-cluster-role-to-user cluster-admin developer --as system:admin
-          oc adm policy add-scc-to-user anyuid -z default --as system:admin
+          oc adm policy add-cluster-role-to-user cluster-admin admin -n myproject --as system:admin
+          oc adm policy add-scc-to-user anyuid -z default -n myproject --as system:admin
   register: role_output
 
 - debug:
